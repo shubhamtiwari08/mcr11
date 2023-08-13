@@ -3,7 +3,7 @@ import { movieContext } from "../context/dataProvider";
 import { useNavigate } from "react-router";
 
 function MovieCard({ data }) {
-  const { movie, handleStar, movieDispatch } = useContext(movieContext);
+  const { movie, handleStar,handleWishlist, movieDispatch } = useContext(movieContext);
 
   const navigate = useNavigate();
 
@@ -40,7 +40,25 @@ function MovieCard({ data }) {
             </div>
           )}
           <div className="col">
-            <button className="btn btn-secondary">wishlist</button>
+          {data?.wishlist === true ? (
+            <div className="col">
+              <button
+                className="btn btn-primary"
+                onClick={() => handleWishlist(data.id)}
+              >
+                remove from wishlist
+              </button>
+            </div>
+          ) : (
+            <div className="col">
+              <button
+                className="btn btn-secondary"
+                onClick={() => handleWishlist(data.id)}
+              >
+                add to wishlist
+              </button>
+            </div>
+          )}
           </div>
         </div>
       </div>

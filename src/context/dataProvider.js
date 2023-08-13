@@ -27,7 +27,7 @@ const [movie , movieDispatch]=useReducer(movieReducer,{movieList:movies,genre:""
 const handleStar = (key)=>{
   console.log("star")
   const starredMovie = movie.movieList.map((item)=>{
-    if(item.id == key){
+    if(item.id === key){
       if(item?.starred === false){
       return {...item,starred:true}
       }else{
@@ -39,9 +39,25 @@ const handleStar = (key)=>{
   movieDispatch({type:"SET_DATA",payload:starredMovie})
 }
 
+const handleWishlist = (key)=>{
+ 
+  const starredMovie = movie.movieList.map((item)=>{
+    if(item.id === key){
+      if(item?.wishlist === false){
+      return {...item,wishlist:true}
+      }else{
+        return {...item,wishlist:false}
+      }
+    }
+    return item
+  })
+  movieDispatch({type:"SET_DATA",payload:starredMovie})
+}
+
+
 
   return (
-    <movieContext.Provider value={{toggle,setToggle,movie,handleStar,movieDispatch}}>
+    <movieContext.Provider value={{toggle,setToggle,movie,handleStar,handleWishlist,movieDispatch}}>
      {children}
     </movieContext.Provider>
   )

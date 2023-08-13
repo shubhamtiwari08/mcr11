@@ -1,0 +1,15 @@
+.navlinks ul li,a {
+    list-style: none;
+   color: white;
+   text-decoration: none;
+}
+
+.navbar{
+    background-color: brown;
+    color: white;
+}
+
+.navlinks ul{
+    display: flex;
+    gap: 1rem;
+}

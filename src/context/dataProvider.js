@@ -27,13 +27,12 @@ const [movie , movieDispatch]=useReducer(movieReducer,{movieList:movies,genre:""
 const handleStar = (key)=>{
   console.log("star")
   const starredMovie = movie.movieList.map((item)=>{
-    if(item.id === key){
-      if(item?.starred === false){
+    if(item.id === key || item?.starred == false ){
+      console.log("inner")
       return {...item,starred:true}
-      }else{
+      }else if(item.id === key || item?.starred === true){
         return {...item,starred:false}
       }
-    }
     return item
   })
   movieDispatch({type:"SET_DATA",payload:starredMovie})
@@ -42,13 +41,12 @@ const handleStar = (key)=>{
 const handleWishlist = (key)=>{
  
   const starredMovie = movie.movieList.map((item)=>{
-    if(item.id === key){
-      if(item?.wishlist === false){
+    if(item.id === key || item?.wishlist == false ){
+      console.log("inner")
       return {...item,wishlist:true}
-      }else{
+      }else if(item.id === key || item?.wishlist === true){
         return {...item,wishlist:false}
       }
-    }
     return item
   })
   movieDispatch({type:"SET_DATA",payload:starredMovie})

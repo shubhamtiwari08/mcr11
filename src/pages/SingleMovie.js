@@ -3,7 +3,7 @@ import { movieContext } from "../context/dataProvider";
 import { useParams } from "react-router";
 
 function SingleMovie() {
-  const { movie,handleStar} = useContext(movieContext);
+  const { movie,handleStar,handleUnstar,handleUnWishlist,handleWishlist   } = useContext(movieContext);
 
   const { singleMovieId } = useParams();
 
@@ -52,7 +52,7 @@ function SingleMovie() {
               <div className="col">
                 <button
                   className="btn btn-primary"
-                  onClick={() => handleStar(id)}
+                  onClick={() => handleUnstar(id)}
                 >
                   Unstar
                 </button>
@@ -68,7 +68,25 @@ function SingleMovie() {
               </div>
             )}
             <div className="col">
-              <button className="btn btn-secondary">wishlist</button>
+            {singleMovie[0]?.wishlist === true ? (
+              <div className="col">
+                <button
+                  className="btn btn-primary"
+                  onClick={() => handleUnWishlist(id)}
+                >
+                  remove from wishlist
+                </button>
+              </div>
+            ) : (
+              <div className="col">
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => handleWishlist(id)}
+                >
+                  add to wishlist
+                </button>
+              </div>
+            )}
             </div>
           </div>
         </div>

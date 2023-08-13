@@ -27,12 +27,22 @@ const [movie , movieDispatch]=useReducer(movieReducer,{movieList:movies,genre:""
 const handleStar = (key)=>{
   console.log("star")
   const starredMovie = movie.movieList.map((item)=>{
-    if(item.id === key || item?.starred == false ){
-      console.log("inner")
+    if(item.id === key   ){
+    
       return {...item,starred:true}
-      }else if(item.id === key || item?.starred === true){
-        return {...item,starred:false}
-      }
+      } 
+    return item
+  })
+  movieDispatch({type:"SET_DATA",payload:starredMovie})
+}
+
+
+const handleUnstar = (key)=>{
+     const starredMovie = movie.movieList.map((item)=>{
+    if(item.id === key){
+    
+      return {...item,starred:false}
+      } 
     return item
   })
   movieDispatch({type:"SET_DATA",payload:starredMovie})
@@ -41,12 +51,20 @@ const handleStar = (key)=>{
 const handleWishlist = (key)=>{
  
   const starredMovie = movie.movieList.map((item)=>{
-    if(item.id === key || item?.wishlist == false ){
-      console.log("inner")
+    if(item.id === key ){
       return {...item,wishlist:true}
-      }else if(item.id === key || item?.wishlist === true){
-        return {...item,wishlist:false}
-      }
+    }
+    return item
+  })
+  movieDispatch({type:"SET_DATA",payload:starredMovie})
+}
+
+const handleUnWishlist = (key)=>{
+ 
+  const starredMovie = movie.movieList.map((item)=>{
+    if(item.id === key ){
+      return {...item,wishlist:false}
+    }
     return item
   })
   movieDispatch({type:"SET_DATA",payload:starredMovie})
@@ -55,7 +73,7 @@ const handleWishlist = (key)=>{
 
 
   return (
-    <movieContext.Provider value={{toggle,setToggle,movie,handleStar,handleWishlist,movieDispatch}}>
+    <movieContext.Provider value={{toggle,setToggle,handleUnWishlist,handleUnstar,movie,handleStar,handleWishlist,movieDispatch}}>
      {children}
     </movieContext.Provider>
   )

@@ -13,7 +13,7 @@ function Navbar() {
     <input type="text" onChange={(e)=>movieDispatch({type:"SEARCH",payload:e.target.value})} placeholder='search movies..' />
     <div className="navlinks ">
       <ul>
-        <li><NavLink to={'/'} >movies</NavLink></li>
+        <li><NavLink to={'/'}>movies</NavLink></li>
         <li><NavLink to={'/starred'} >starred</NavLink></li>
         <li><NavLink to={'/wishlist'} >wishlist</NavLink></li>
       </ul>    

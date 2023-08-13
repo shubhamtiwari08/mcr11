@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useReducer } from 'react'
+import React, { createContext, useEffect, useReducer, useState } from 'react'
 import { movies } from '../db'
 
 export const movieContext = createContext()
@@ -21,7 +21,7 @@ const movieReducer = (state,{type,payload})=>{
 
 
 function MovieProvider({children}) {
-
+  const [toggle,setToggle] = useState(false)
 const [movie , movieDispatch]=useReducer(movieReducer,{movieList:movies,genre:"",rating:"",year:"",search:""})
  
 const handleStar = (key)=>{
@@ -41,7 +41,7 @@ const handleStar = (key)=>{
 
 
   return (
-    <movieContext.Provider value={{movie,handleStar,movieDispatch}}>
+    <movieContext.Provider value={{toggle,setToggle,movie,handleStar,movieDispatch}}>
      {children}
     </movieContext.Provider>
   )
